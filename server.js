@@ -6,9 +6,6 @@ app.use(express.json());
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-async function main() {
-  console.log(user);
-}
 app.post("/short-link", async (req, res) => {
   try {
     const link_info = await prisma.url.findFirst({
@@ -48,7 +45,7 @@ app.get("/:hash", async (req, res) => {
   try {
     const link = await prisma.url.findFirst({
       where: {
-        hashedLink: req.params["hash"],
+        hashedLink: req.params.hash,
       },
     });
     if (link === null) throw new Error("No such link found!");
