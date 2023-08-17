@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@commitlint/config-conventional": "^17.7.0",
     "@prisma/client": "^5.1.1",
     "bcrypt": "^5.1.0",
     "commitlint": "^17.7.1",
