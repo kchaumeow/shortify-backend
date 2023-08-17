@@ -11,9 +11,8 @@ app.post("/short-link", async (req, res) => {
     const link_info = await prisma.url.findFirst({
       where: { link: req.body.link },
     });
-    console.log(link_info);
     if (link_info === null) {
-      const saltRange = 10;
+      const saltRange = +process.env.SALT_RANGE;
       const hashLink = (await cryptor.hash(req.body.link, saltRange)).replace(
         /[\s/]/g,
         ""
@@ -24,7 +23,6 @@ app.post("/short-link", async (req, res) => {
           hashedLink: hashLink,
         },
       });
-      console.log(url);
       res.status(201).send(url);
     } else {
       res.status(200).send(link_info);
@@ -57,6 +55,6 @@ app.get("/:hash", async (req, res) => {
     });
   }
 });
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Application listening on port 3000!");
 });
