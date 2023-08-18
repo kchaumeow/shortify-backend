@@ -12,7 +12,10 @@ Environmental variables:
   2. PORT - contains the port number that you want to start this app on
 
 If PORT=3000, in the console you will see this: `Application listening on port 3000!`
-
+### Example of setting variable POST
+```
+POST=5000 npm run start
+```
 ## Technology Stack
 In this project I used:
   + Express.js for backend
