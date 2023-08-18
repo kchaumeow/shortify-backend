@@ -18,3 +18,4 @@ In this project I used:
   + Express.js for backend
   + Prisma as ORM system
   + SQLite as DBMS
+  + Commitlint for linting commits
