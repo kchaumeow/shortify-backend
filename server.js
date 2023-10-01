@@ -1,10 +1,18 @@
 const express = require("express");
 const app = express();
-const cryptor = require("bcrypt");
+const cryptor = require("crypto");
 app.use(express.json());
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const cors = require("cors");
+app.use(cors());
 
+function createHash(data, len) {
+  return cryptor
+    .createHash("shake256", { outputLength: len })
+    .update(data)
+    .digest("hex");
+}
 class HTTPError extends Error {
   constructor(message, status) {
     super(message);
@@ -18,9 +26,7 @@ app.post("/short-link", async (req, res) => {
     where: { link: req.body.link },
   });
   if (link_info === null) {
-    const hashLink = (
-      await cryptor.hash(req.body.link, parseInt(process.env.SALT_RANGE))
-    ).replace(/[\s/]/g, "");
+    const hashLink = createHash(req.body.link, 8);
     const url = await prisma.url.create({
       data: {
         link: req.body.link,
@@ -38,7 +44,7 @@ app.post("/short-link", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Suck my dick, Vladik! <3");
+  res.send("I love Vladslav Knyshov! <3");
 });
 
 app.get("/:hash", async (req, res, next) => {
