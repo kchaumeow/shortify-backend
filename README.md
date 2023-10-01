@@ -1,5 +1,7 @@
-# Short-Links
+# Shortify
 This is a web-app for saving and hashing your favourite links, so you can easily use them in the future. The main functionality is making short-link out of your default link.
+
+Frontend: https://github.com/kchaumeow/shortify-frontend
 ## How to setup and run project
 Clone this project and enter the following commands: 
 ```
@@ -12,9 +14,9 @@ Environmental variables:
   2. PORT - contains the port number that you want to start this app on
 
 If PORT=3000, in the console you will see this: `Application listening on port 3000!`
-### Example of setting variable POST
+### Example of setting variable PORT
 ```
-POST=5000 npm run start
+PORT=5000 npm run start
 ```
 ## Technology Stack
 In this project I used:

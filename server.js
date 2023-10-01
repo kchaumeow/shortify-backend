@@ -44,7 +44,7 @@ app.post("/short-link", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("I love Vladslav Knyshov! <3");
+  res.send("Hello, this is backend for shortify!!!");
 });
 
 app.get("/:hash", async (req, res, next) => {
