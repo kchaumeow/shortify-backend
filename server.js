@@ -7,9 +7,9 @@ const prisma = new PrismaClient();
 const cors = require("cors");
 app.use(cors());
 
-function createHash(data, len) {
+function createHash(data) {
   return cryptor
-    .createHash("shake256", { outputLength: len })
+    .createHash("shake256", { outputLength: 8 })
     .update(data)
     .digest("hex");
 }
@@ -26,7 +26,7 @@ app.post("/short-link", async (req, res) => {
     where: { link: req.body.link },
   });
   if (link_info === null) {
-    const hashLink = createHash(req.body.link, 8);
+    const hashLink = createHash(req.body.link);
     const url = await prisma.url.create({
       data: {
         link: req.body.link,
